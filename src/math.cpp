@@ -23,7 +23,7 @@
 #include <QLocale>
 #include <QMenu>
 
-#include <gnuradio/iio/math.h>
+#include <gnuradio/scopy/math.h>
 
 using namespace adiscope;
 
@@ -168,7 +168,7 @@ void Math::validateFunction()
 	QString function = ui.function->text();
 
 	try {
-		gr::iio::iio_math::make(function.toStdString(), num_inputs);
+		gr::scopy::iio_math::make(function.toStdString(), num_inputs);
 
 		Q_EMIT functionValid(function);
 

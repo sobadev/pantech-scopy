@@ -22,7 +22,7 @@
 
 /* GNU Radio includes */
 #include <gnuradio/blocks/float_to_complex.h>
-#include <gnuradio/iio/math.h>
+#include <gnuradio/scopy/math.h>
 #include <gnuradio/blocks/sub_ff.h>
 #include <gnuradio/filter/iir_filter_ffd.h>
 #include <gnuradio/blocks/nlog10_ff.h>
@@ -1594,7 +1594,7 @@ void Oscilloscope::add_math_channel(const std::string& function)
 		return;
 	}
 
-	auto math = iio::iio_math::make(function, nb_channels);
+	auto math = scopy::iio_math::make(function, nb_channels);
 	unsigned int curve_id = nb_channels + nb_math_channels + nb_ref_channels;
 	unsigned int curve_number = find_curve_number();
 
@@ -3112,7 +3112,7 @@ void Oscilloscope::editMathChannelFunction(int id, const std::string& new_functi
 	QString qname = chn_widget->deleteButton()->property("curve_name").toString();
 	std::string name = qname.toStdString();
 
-	auto math = iio::iio_math::make(new_function, nb_channels);
+	auto math = scopy::iio_math::make(new_function, nb_channels);
 
 	bool started = iio->started();
 	if (started)
