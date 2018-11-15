@@ -1464,14 +1464,6 @@ basic_block_sptr SignalGenerator::getSignalSource(gr::top_block_sptr top,
 		phase=phase+360.0;
 	}
 
-	if(data.waveform==SG_SIN_WAVE)
-		waveform=analog::GR_SIN_WAVE;
-	else
-		waveform=analog::GR_TRA_WAVE;
-
-	boost::shared_ptr<analog::sig_source_f> src = analog::sig_source_f::make(samp_rate, waveform,
-					      data.frequency, amplitude, offset,phase*0.01745329);
-
 	switch(data.waveform)
 	{
 	case SG_SQR_WAVE:
@@ -1503,7 +1495,15 @@ basic_block_sptr SignalGenerator::getSignalSource(gr::top_block_sptr top,
 		break;
 	}
 
-	src->set_tra_params(rise,holdh,fall,holdl);
+	basic_block_sptr src = nullptr;
+	if(data.waveform==SG_SIN_WAVE)
+		src = analog::sig_source_f::make(samp_rate, analog::GR_SIN_WAVE,
+			data.frequency, amplitude, offset, phase*0.01745329);
+	else
+		src = scopy::trapezoidal::make(samp_rate, data.frequency, amplitude,
+					       rise, holdh, fall, holdl, offset,
+					       phase*0.01745329);
+
 	return src;
 
 }
