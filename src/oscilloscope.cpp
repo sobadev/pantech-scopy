@@ -1060,6 +1060,9 @@ void Oscilloscope::init_channel_settings()
 			ch_ui->btnAutoset->setVisible(autosetEnabled);
 		}
 	});
+	connect(ch_ui->lineStyle, QOverload<int>::of(&QComboBox::currentIndexChanged), [=](int index) {
+		plot.setPlotLineStyle(current_ch_widget, index);
+	});
 }
 
 void Oscilloscope::activateAcCoupling(int i)
@@ -3158,6 +3161,8 @@ void Oscilloscope::update_chn_settings_panel(int id)
 
 	voltsPerDiv->setDisplayScale(probe_attenuation[id]);
 	voltsPosition->setDisplayScale(probe_attenuation[id]);
+
+	ch_ui->lineStyle->setCurrentIndex(plot.getLineStyle(current_ch_widget));
 }
 
 void Oscilloscope::openEditMathPanel(bool on)
