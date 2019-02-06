@@ -104,9 +104,9 @@ font-weight: normal;
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>0</y>
+        <y>-126</y>
         <width>461</width>
-        <height>588</height>
+        <height>728</height>
        </rect>
       </property>
       <property name="sizePolicy">
@@ -671,7 +671,149 @@ color: rgba(255, 255, 255, 70);
          <property name="verticalSpacing">
           <number>15</number>
          </property>
-         <item row="0" column="0">
+         <item row="3" column="1">
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <property name="spacing">
+            <number>3</number>
+           </property>
+           <property name="bottomMargin">
+            <number>10</number>
+           </property>
+           <item>
+            <widget class="QLabel" name="label_4">
+             <property name="styleSheet">
+              <string notr="true">font-size: 13px;</string>
+             </property>
+             <property name="text">
+              <string>Curve Style</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="lineStyle">
+             <item>
+              <property name="text">
+               <string>Lines</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Dots</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Steps</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Sticks</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="4" column="0">
+          <layout class="QVBoxLayout" name="memDepthLayout">
+           <property name="spacing">
+            <number>3</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>10</number>
+           </property>
+           <item>
+            <widget class="QLabel" name="label_3">
+             <property name="styleSheet">
+              <string notr="true">font-size: 13px;</string>
+             </property>
+             <property name="text">
+              <string>Memory depth</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="cmbMemoryDepth"/>
+           </item>
+          </layout>
+         </item>
+         <item row="4" column="1">
+          <widget class="QWidget" name="probeWidget" native="true">
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <layout class="QVBoxLayout" name="probeLayout">
+              <property name="spacing">
+               <number>3</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>10</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="probe_label">
+                <property name="styleSheet">
+                 <string notr="true">font-size: 13px;</string>
+                </property>
+                <property name="text">
+                 <string>Probe
+Attenuation</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="probe_attenuation">
+                <property name="currentIndex">
+                 <number>1</number>
+                </property>
+                <item>
+                 <property name="text">
+                  <string>0.1X</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>1X</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>10X</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>100X</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="3" column="0">
           <layout class="QVBoxLayout" name="thicknessLayout">
            <property name="spacing">
             <number>3</number>
@@ -751,106 +893,121 @@ color: rgba(255, 255, 255, 70);
            </item>
           </layout>
          </item>
-         <item row="1" column="0">
-          <layout class="QVBoxLayout" name="memDepthLayout">
+         <item row="0" column="0">
+          <layout class="QVBoxLayout" name="verticalLayout_4">
            <property name="spacing">
             <number>3</number>
-           </property>
-           <property name="topMargin">
-            <number>0</number>
            </property>
            <property name="bottomMargin">
             <number>10</number>
            </property>
            <item>
-            <widget class="QLabel" name="label_3">
+            <widget class="QLabel" name="label_5">
              <property name="styleSheet">
               <string notr="true">font-size: 13px;</string>
              </property>
              <property name="text">
-              <string>Memory depth</string>
+              <string>Spline</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QComboBox" name="cmbMemoryDepth"/>
+            <widget class="QComboBox" name="spline">
+             <item>
+              <property name="text">
+               <string>None</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Pleasing</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Cardinal</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>PChip</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Parabolic\nBlending</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Akima</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Cubic</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Basis</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="1" column="0">
+          <layout class="QVBoxLayout" name="verticalLayout_5">
+           <property name="spacing">
+            <number>3</number>
+           </property>
+           <property name="bottomMargin">
+            <number>10</number>
+           </property>
+           <item>
+            <widget class="QLabel" name="parametricLabel">
+             <property name="styleSheet">
+              <string notr="true">font-size: 13px;</string>
+             </property>
+             <property name="text">
+              <string>Parametric</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="parametric">
+             <item>
+              <property name="text">
+               <string>No</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Uniform</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Centripetral</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Chordal</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Manhattan</string>
+              </property>
+             </item>
+            </widget>
            </item>
           </layout>
          </item>
          <item row="1" column="1">
-          <widget class="QWidget" name="probeWidget" native="true">
-           <layout class="QHBoxLayout" name="horizontalLayout">
-            <property name="spacing">
-             <number>0</number>
-            </property>
-            <property name="leftMargin">
-             <number>0</number>
-            </property>
-            <property name="topMargin">
-             <number>0</number>
-            </property>
-            <property name="rightMargin">
-             <number>0</number>
-            </property>
-            <property name="bottomMargin">
-             <number>0</number>
-            </property>
-            <item>
-             <layout class="QVBoxLayout" name="probeLayout">
-              <property name="spacing">
-               <number>3</number>
-              </property>
-              <property name="topMargin">
-               <number>0</number>
-              </property>
-              <property name="bottomMargin">
-               <number>10</number>
-              </property>
-              <item>
-               <widget class="QLabel" name="probe_label">
-                <property name="styleSheet">
-                 <string notr="true">font-size: 13px;</string>
-                </property>
-                <property name="text">
-                 <string>Probe
-Attenuation</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QComboBox" name="probe_attenuation">
-                <property name="currentIndex">
-                 <number>1</number>
-                </property>
-                <item>
-                 <property name="text">
-                  <string>0.1X</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>1X</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>10X</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>100X</string>
-                 </property>
-                </item>
-               </widget>
-              </item>
-             </layout>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <layout class="QVBoxLayout" name="verticalLayout_3">
+          <layout class="QVBoxLayout" name="verticalLayout_6">
            <property name="spacing">
             <number>3</number>
            </property>
@@ -858,35 +1015,40 @@ Attenuation</string>
             <number>10</number>
            </property>
            <item>
-            <widget class="QLabel" name="label_4">
+            <widget class="QLabel" name="boundaryLabel">
              <property name="styleSheet">
               <string notr="true">font-size: 13px;</string>
              </property>
              <property name="text">
-              <string>Curve Style</string>
+              <string>Boundary</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QComboBox" name="lineStyle">
+            <widget class="QComboBox" name="boundary">
              <item>
               <property name="text">
-               <string>Lines</string>
+               <string>Natural</string>
               </property>
              </item>
              <item>
               <property name="text">
-               <string>Dots</string>
+               <string>Linear Runout</string>
               </property>
              </item>
              <item>
               <property name="text">
-               <string>Steps</string>
+               <string>Parabolic Runout</string>
               </property>
              </item>
              <item>
               <property name="text">
-               <string>Sticks</string>
+               <string>Cubic Runout</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Not a Knot</string>
               </property>
              </item>
             </widget>

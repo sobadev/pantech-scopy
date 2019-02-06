@@ -127,6 +127,13 @@ public:
   void clearPreview();
   void realignReferenceWaveforms(double timebase, double timeposition);
 
+  void setSpline(unsigned int chIdx, unsigned int spline);
+  void setSplineParameter(unsigned int chIdx, const QString &parameter);
+  QString getSplineParameter(unsigned int chIdx) const;
+
+  int getSpline(unsigned int chIdx) const;
+  void setBoundary(unsigned int chIdx, const QString &boundary);
+  QString getBoundary(unsigned int chIdx) const;
 Q_SIGNALS:
   void channelAdded(int);
   void newData();
@@ -202,6 +209,10 @@ private:
   bool d_semilogx;
   bool d_semilogy;
   bool d_autoscale_shot;
+
+  QStringList d_parameter;
+  QVector<int> d_spline;
+  QStringList d_boundary;
 
   std::vector< std::vector<QwtPlotMarker*> > d_tag_markers;
   std::vector<bool> d_tag_markers_en;

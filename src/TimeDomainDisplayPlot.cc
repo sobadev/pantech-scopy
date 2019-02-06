@@ -34,6 +34,8 @@
 #include "TimeDomainDisplayPlot.h"
 #include "osc_scale_engine.h"
 
+#include "splinefitter.h"
+
 using namespace adiscope;
 
 class TimeDomainDisplayZoomer: public OscPlotZoomer
@@ -218,6 +220,13 @@ TimeDomainDisplayPlot::TimeDomainDisplayPlot(QWidget* parent, unsigned int xNumD
 	  d_zoomer.push_back(new TimeDomainDisplayZoomer(this->canvas()));
 	  d_zoomer[i]->setEnabled(false);
   }
+
+  for (int i = 0; i < 6; ++i) {
+	  d_spline.push_back(0);
+	  d_parameter.push_back("No");
+	  d_boundary.push_back("Natural");
+  }
+
 }
 
 
@@ -677,6 +686,45 @@ TimeDomainDisplayPlot::stemPlot(bool en)
   }
 }
 
+void TimeDomainDisplayPlot::setSplineParameter(unsigned int chIdx, const QString &parameter)
+{
+	if (chIdx < 0 || chIdx >= d_plot_curve.size()) {
+		return;
+	}
+
+	auto curve = d_plot_curve[chIdx];
+
+	SplineFitter *fitter = dynamic_cast<SplineFitter *>(curve->curveFitter());
+
+	if (fitter) {
+		fitter->setParametric(parameter);
+	}
+
+	d_parameter[chIdx] = parameter;
+}
+
+void TimeDomainDisplayPlot::setBoundary(unsigned int chIdx, const QString &boundary)
+{
+	if (chIdx < 0 || chIdx >= d_plot_curve.size()) {
+		return;
+	}
+
+	auto curve = d_plot_curve[chIdx];
+
+	SplineFitter *fitter = dynamic_cast<SplineFitter *>(curve->curveFitter());
+
+	if (fitter) {
+		fitter->setBoundaryCondition(boundary);
+	}
+
+	d_boundary[chIdx] = boundary;
+}
+
+QString TimeDomainDisplayPlot::getBoundary(unsigned int chIdx) const
+{
+	return d_boundary[chIdx];
+}
+
 void TimeDomainDisplayPlot::setPlotLineStyle(unsigned int chIdx, unsigned int style)
 {
 	if (chIdx < 0 || chIdx >= d_plot_curve.size()) {
@@ -699,6 +747,68 @@ void TimeDomainDisplayPlot::setPlotLineStyle(unsigned int chIdx, unsigned int st
 		curve->setStyle(QwtPlotCurve::CurveStyle::Sticks);
 		break;
 	}
+
+
+}
+
+void TimeDomainDisplayPlot::setSpline(unsigned int chIdx, unsigned int spline)
+{
+	if (chIdx < 0 || chIdx >= d_plot_curve.size()) {
+		return;
+	}
+
+	auto curve = d_plot_curve[chIdx];
+	curve->setPaintAttribute(QwtPlotCurve::ClipPolygons, false);
+	curve->setCurveAttribute(QwtPlotCurve::Fitted, true);
+	curve->setRenderHint(QwtPlotItem::RenderAntialiased);
+
+	switch (spline) {
+	case 0:
+		curve->setPaintAttribute(QwtPlotCurve::ClipPolygons, true);
+		curve->setCurveAttribute(QwtPlotCurve::Fitted, false);
+		break;
+	case 1:
+		curve->setCurveFitter( new SplineFitter( SplineFitter::PleasingSpline ) );
+		break;
+	case 2:
+		 curve->setCurveFitter( new SplineFitter( SplineFitter::CardinalSpline ) );
+		break;
+	case 3:
+		curve->setCurveFitter( new SplineFitter( SplineFitter::PChipSpline ) );
+		break;
+	case 4:
+		curve->setCurveFitter( new SplineFitter( SplineFitter::ParabolicBlendingSpline ) );
+		break;
+	case 5:
+		curve->setCurveFitter( new SplineFitter( SplineFitter::AkimaSpline ) );
+		break;
+	case 6:
+		curve->setCurveFitter( new SplineFitter( SplineFitter::CubicSpline ) );
+		break;
+	case 7:
+		curve->setCurveFitter( new SplineFitter( SplineFitter::BasisSpline ) );
+		break;
+
+	}
+
+	d_spline[chIdx] = spline;
+
+	setSplineParameter(chIdx, d_parameter[chIdx]);
+	setBoundary(chIdx, d_boundary[chIdx]);
+}
+
+int TimeDomainDisplayPlot::getSpline(unsigned int chIdx) const
+{
+	qDebug() << "Spline for : " << chIdx << " is " << d_spline[chIdx];
+
+	return d_spline[chIdx];
+}
+
+QString TimeDomainDisplayPlot::getSplineParameter(unsigned int chIdx) const
+{
+	qDebug() << "Spline parameter for: " << chIdx << " is " << d_parameter[chIdx];
+
+	return d_parameter[chIdx];
 }
 
 int TimeDomainDisplayPlot::getLineStyle(unsigned int chIdx)

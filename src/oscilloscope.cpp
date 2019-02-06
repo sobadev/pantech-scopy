@@ -1046,6 +1046,11 @@ void Oscilloscope::toggleMiniHistogramPlotVisible(bool enabled)
 
 void Oscilloscope::init_channel_settings()
 {
+	ch_ui->parametric->setVisible(false);
+	ch_ui->parametricLabel->setVisible(false);
+	ch_ui->boundaryLabel->setVisible(false);
+	ch_ui->boundary->setVisible(false);
+
 	connect(ch_ui->btnEditMath, &QPushButton::toggled, this,
 		&Oscilloscope::openEditMathPanel);
 
@@ -1063,6 +1068,28 @@ void Oscilloscope::init_channel_settings()
 	connect(ch_ui->lineStyle, QOverload<int>::of(&QComboBox::currentIndexChanged), [=](int index) {
 		plot.setPlotLineStyle(current_ch_widget, index);
 	});
+	connect(ch_ui->spline, QOverload<int>::of(&QComboBox::currentIndexChanged), [=](int index) {
+		plot.setSpline(current_ch_widget, index);
+		if (index > 0){
+			ch_ui->parametricLabel->setVisible(true);
+			ch_ui->parametric->setVisible(true);
+			ch_ui->boundaryLabel->setVisible(true);
+			ch_ui->boundary->setVisible(true);
+		} else {
+			ch_ui->parametricLabel->setVisible(false);
+			ch_ui->parametric->setVisible(false);
+			ch_ui->boundaryLabel->setVisible(false);
+			ch_ui->boundary->setVisible(false);
+		}
+	});
+
+	connect(ch_ui->parametric, &QComboBox::currentTextChanged, [=](const QString &text) {
+		plot.setSplineParameter(current_ch_widget, text);
+	});
+	connect(ch_ui->boundary, &QComboBox::currentTextChanged, [=](const QString &text) {
+		plot.setBoundary(current_ch_widget, text);
+	});
+
 }
 
 void Oscilloscope::activateAcCoupling(int i)
@@ -3163,6 +3190,9 @@ void Oscilloscope::update_chn_settings_panel(int id)
 	voltsPosition->setDisplayScale(probe_attenuation[id]);
 
 	ch_ui->lineStyle->setCurrentIndex(plot.getLineStyle(current_ch_widget));
+	ch_ui->parametric->setCurrentText(plot.getSplineParameter(current_ch_widget));
+	ch_ui->spline->setCurrentIndex(plot.getSpline(current_ch_widget));
+	ch_ui->boundary->setCurrentText(plot.getBoundary(current_ch_widget));
 }
 
 void Oscilloscope::openEditMathPanel(bool on)
