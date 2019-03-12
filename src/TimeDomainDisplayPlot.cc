@@ -870,6 +870,12 @@ bool TimeDomainDisplayPlot::isReferenceWaveform(QwtPlotCurve *curve)
 	return d_ref_curves.values().contains(curve);
 }
 
+bool TimeDomainDisplayPlot::isMathWaveform(QwtPlotCurve *curve)
+{
+	return d_math_curves.values().contains(curve);
+}
+
+
 int TimeDomainDisplayPlot::getCurveNextTo(int pos)
 {
 	while (isReferenceWaveform(Curve(pos))) pos++;
@@ -1054,6 +1060,17 @@ void TimeDomainDisplayPlot::realignReferenceWaveforms(double timebase, double ti
 	}
 }
 
+bool TimeDomainDisplayPlot::registerMathWaveform(std::string sinkUniqueNme, unsigned int numChannels,
+	 unsigned long long channelsDataLength, bool curvesAttached)
+{
+	bool ret = registerSink(sinkUniqueNme, numChannels, channelsDataLength, curvesAttached);
+	if (ret) {
+		d_math_curves.insert(QString::fromStdString(sinkUniqueNme), d_plot_curve.back());
+	}
+	return ret;
+}
+
+
 bool TimeDomainDisplayPlot::registerSink(std::string sinkUniqueNme, unsigned int numChannels,
 	unsigned long long channelsDataLength, bool curvesAttached)
 {
@@ -1101,6 +1118,15 @@ bool TimeDomainDisplayPlot::registerSink(std::string sinkUniqueNme, unsigned int
 		d_sink_reset_x_axis_pts.push_back(false);
 	}
 
+	return ret;
+}
+
+bool TimeDomainDisplayPlot::unregisterMathWaveform(std::string sinkName)
+{
+	int ret = unregisterSink(sinkName);
+	if (ret) {
+		d_math_curves.remove(QString::fromStdString(sinkName));
+	}
 	return ret;
 }
 
