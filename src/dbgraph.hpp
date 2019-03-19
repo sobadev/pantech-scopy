@@ -90,11 +90,15 @@ public:
 	QVector<double> getXAxisData();
 	QVector<double> getYAxisData();
 
+	void enableFrequencyBar(bool enable);
 	void setYAxisInterval(double min, double max, double correction);
+
 Q_SIGNALS:
 	void VBar1PixelPosChanged(int);
 	void VBar2PixelPosChanged(int);
 	void resetZoom();
+	void frequencySelected(double);
+	void frequencyBarPositionChanged(int);
 
 public Q_SLOTS:
 	void plot(double x, double y);
@@ -135,6 +139,9 @@ public Q_SLOTS:
 	void mousePressEvent(QMouseEvent *event);
 	void onResetZoom();
 
+	void onFrequencyCursorPositionChanged(int pos);
+	void onFrequencyBarMoved(double frequency);
+
 protected Q_SLOTS:
 	void showEvent(QShowEvent *event);
 
@@ -162,6 +169,7 @@ private:
 	VertBar *d_vBar1;
 	VertBar *d_vBar2;
 	VertBar *d_plotBar;
+	VertBar *d_frequencyBar;
 
 	PlotPickerWrapper *picker;
 
