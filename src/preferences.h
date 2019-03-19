@@ -89,6 +89,9 @@ public:
 	bool getOsc_filtering_enabled() const;
 	void setOsc_filtering_enabled(bool value);
 
+	bool getNaGainUpdateEnabled() const;
+	void setNaGainUpdateEnabled(bool value);
+
 Q_SIGNALS:
 
 	void notify();
@@ -117,6 +120,7 @@ private:
 	bool manual_calib_enabled;
 	bool animations_enabled;
 	bool osc_filtering_enabled;
+	bool na_update_gain_enabled;
 
 	Preferences_API *pref_api;
 	QString getPreferenceIniFile() const;
@@ -140,12 +144,16 @@ class Preferences_API : public ApiObject
 	Q_PROPERTY(bool manual_calib_script_enabled READ getManualCalibScript WRITE setManualCalibScript)
 	Q_PROPERTY(bool animations_enabled READ getAnimationsEnabled WRITE setAnimationsEnabled)
 	Q_PROPERTY(bool osc_filtering_enabled READ getOscFilteringEnabled WRITE setOscFilteringEnabled)
+	Q_PROPERTY(bool na_gain_update_enabled READ getNaGainUpdateEnabled WRITE setNaGainUpdateEnabled)
 
 public:
 
 	explicit Preferences_API(Preferences *preferencePanel) :
 		ApiObject(),
 		preferencePanel(preferencePanel) {}
+
+	bool getNaGainUpdateEnabled() const;
+	void setNaGainUpdateEnabled(bool enabled);
 
 	bool getAnimationsEnabled() const;
 	void setAnimationsEnabled(const bool& enabled);
