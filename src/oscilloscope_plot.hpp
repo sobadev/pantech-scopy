@@ -124,6 +124,8 @@ namespace adiscope {
 
 		void setGraticuleEnabled(bool enabled);
 
+		void computeMeasurementsForChannel(unsigned int chnIdx, unsigned int sampleRate);
+
 	Q_SIGNALS:
 		void timeTriggerValueChanged(double);
 		void channelOffsetChanged(double);
