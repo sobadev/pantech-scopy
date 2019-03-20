@@ -5,6 +5,6 @@ Exec=@CMAKE_INSTALL_PREFIX@/bin/scopy
 Terminal=false
 Type=Application
 Categories=Science;
-Name=Scopy
+Name=PS-SCOPE
 GenericName=Oscilloscope
 Comment=A software oscilloscope
