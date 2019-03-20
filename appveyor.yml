@@ -92,5 +92,9 @@ build_script:
     - ISCC /Q C:\build_32\scopy.iss
     - appveyor PushArtifact C:\scopy-setup.exe
 
+on_success:
+  - git commit
+  - git push
+  
 #on_finish:
     #- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
