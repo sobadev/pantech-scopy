@@ -11,13 +11,13 @@ BEGIN
         BLOCK "040904E4"
         BEGIN
             VALUE "FileVersion",        "@SCOPY_PRODUCTVERSION_STR@"
-            VALUE "CompanyName",        "Analog Devices"
-            VALUE "FileDescription",    "Scopy - A software oscilloscope and signal analysis toolset"
+            VALUE "CompanyName",        "Pantech Solutions"
+            VALUE "FileDescription",    "PS-SCOPE - A software oscilloscope and signal analysis toolset"
             VALUE "InternalName",       "Scopy"
             VALUE "LegalCopyright",     "Copyright 2016-@BUILD_YEAR@ ADI and other contributors"
             VALUE "LegalTrademarks",    "https://www.gnu.org/licenses/gpl-3.0.en.html"
             VALUE "OriginalFilename",   "scopy.exe"
-            VALUE "ProductName",        "Scopy"
+            VALUE "ProductName",        "PS-SCOPE"
             VALUE "ProductVersion",     "@SCOPY_PRODUCTVERSION_STR@-g@SCOPY_VERSION_GIT@"
         END
     END
