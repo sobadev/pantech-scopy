@@ -1,5 +1,5 @@
-#define AppExeName "Scopy.exe"
-#define AppName "Scopy"
+#define AppExeName "PS-SCOPE.exe"
+#define AppName "PS-SCOPE"
 #define Python "python3.7"
 
 [Setup]
@@ -12,7 +12,7 @@ AppSupportURL="http://www.analog.com"
 AppUpdatesURL="http://www.analog.com"
 AppCopyright="Copyright 2018 Analog Devices, Inc."
 CreateAppDir=yes
-OutputBaseFilename=scopy-setup
+OutputBaseFilename=ps-scope
 LicenseFile="C:\projects\scopy\LICENSE"
 OutputDir="C:\"
 AllowNoIcons=yes
