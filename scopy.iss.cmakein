@@ -1,4 +1,4 @@
-#define AppExeName "PS-SCOPE.exe"
+#define AppExeName "Scopy.exe"
 #define AppName "PS-SCOPE"
 #define Python "python3.7"
 
@@ -6,11 +6,11 @@
 AppId={{02A7A7F9-F068-4B1C-85F6-B6D325938E19}
 AppName="{#AppName}"
 AppVersion="@PROJECT_VERSION@"
-AppPublisher="Analog Devices, Inc."
-AppPublisherURL="http://www.analog.com"
-AppSupportURL="http://www.analog.com"
-AppUpdatesURL="http://www.analog.com"
-AppCopyright="Copyright 2018 Analog Devices, Inc."
+AppPublisher="Pantech Solutions"
+AppPublisherURL="https://www.pantechsolutions.net/"
+AppSupportURL="https://www.pantechsolutions.net/"
+AppUpdatesURL="https://www.pantechsolutions.net/"
+AppCopyright="Copyright 2018 Pantech Solutions"
 CreateAppDir=yes
 OutputBaseFilename=ps-scope
 LicenseFile="C:\projects\scopy\LICENSE"
