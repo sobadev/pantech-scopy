@@ -195,7 +195,7 @@ void InfoPage::refreshInfoWidget()
 
         int pos = 0;
         for (auto key : m_info_params.keys()) {
-		if (key != "hw_model") && (m_info_params.value(key) != "usb,vendor") {
+		if ((key != "hw_model") && (m_info_params.value(key) != "usb,vendor")) {
                          
                 QLabel *valueLbl = new QLabel(this);
                 QLabel *keyLbl = new QLabel(this);
