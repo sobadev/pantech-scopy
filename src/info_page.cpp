@@ -195,7 +195,7 @@ void InfoPage::refreshInfoWidget()
 
         int pos = 0;
         for (auto key : m_info_params.keys()) {
-		if ((key != "Model") && (key != "Vendor")) {
+		if ((key != "Model") && (key != "Vendor") && (key != "Product name")) {
                          
                 QLabel *valueLbl = new QLabel(this);
                 QLabel *keyLbl = new QLabel(this);
@@ -216,7 +216,7 @@ void InfoPage::refreshInfoWidget()
                 ui->paramLayout->addWidget(new QLabel("Advanced"), pos, 0, 1, 1);
                 pos++;
                 for (auto key : m_info_params_advanced.keys()) {
-			if( (key != "Model") && (key != "Vendor")) {
+			if( (key != "Model") && (key != "Vendor") && (key != "Product name")) {
                         QLabel *valueLbl = new QLabel(this);
                         QLabel *keyLbl = new QLabel(this);
                         valueLbl->setText(m_info_params_advanced.value(key));
